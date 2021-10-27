@@ -4,14 +4,9 @@ import 'package:flutter/material.dart';
 
 final List<Data> allData = dataList;
 
-class Trending extends StatefulWidget {
+class Trending extends StatelessWidget {
   const Trending({Key? key}) : super(key: key);
 
-  @override
-  _TrendingState createState() => _TrendingState();
-}
-
-class _TrendingState extends State<Trending> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -165,8 +160,7 @@ class TrendingList extends StatelessWidget {
 }
 
 class ListCard extends StatelessWidget {
-  // ignore: use_key_in_widget_constructors
-  const ListCard({required this.data, required this.shortText});
+  const ListCard({Key? key, required this.data, required this.shortText}) : super(key: key);
 
   final Data data;
   final String shortText;

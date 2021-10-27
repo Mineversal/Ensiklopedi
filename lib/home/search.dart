@@ -1,6 +1,6 @@
 import 'package:ensiklopedi/content/content.dart';
 import 'package:ensiklopedi/model/data.dart';
-import 'package:ensiklopedi/widget/searchwidget.dart';
+import 'package:ensiklopedi/widget/search_widget.dart';
 import 'package:flutter/material.dart';
 
 final List<Data> allData = dataList;
@@ -13,13 +13,13 @@ class Search extends StatefulWidget {
 }
 
 class _SearchState extends State<Search> {
-  late List<Data> contents;
-  String query = '';
+  late List<Data> _contents;
+  String _query = '';
 
   @override
   void initState() {
     super.initState();
-    contents = allData;
+    _contents = allData;
   }
 
   @override
@@ -56,9 +56,9 @@ class _SearchState extends State<Search> {
             child: Container(
               margin: const EdgeInsets.symmetric(horizontal: 10.0),
               child: ListView.builder(
-                itemCount: contents.length,
+                itemCount: _contents.length,
                 itemBuilder: (context, index) {
-                  final data = contents[index];
+                  final data = _contents[index];
                   var shortText = data.description;
                   if (data.description.length > 20) {
                     shortText = shortText.substring(0, 20) + "...";
@@ -75,22 +75,22 @@ class _SearchState extends State<Search> {
     );
   }
 
-  void searchData(String query) {
-    final contents = allData.where((item) {
+  void searchData(String _query) {
+    final _contents = allData.where((item) {
       final titleLower = item.name.toLowerCase();
-      final searchLower = query.toLowerCase();
+      final searchLower = _query.toLowerCase();
       return titleLower.contains(searchLower);
     }).toList();
 
     setState(() {
-      this.query = query;
-      this.contents = contents;
+      this._query = _query;
+      this._contents = _contents;
     });
   }
 
-  //Search Widget
+  ///Search Widget
   Widget buildSearch() => SearchWidget(
-        text: query,
+        text: _query,
         hintText: 'Judul Content',
         onChanged: searchData,
       );
@@ -106,8 +106,7 @@ class _SearchState extends State<Search> {
 }
 
 class ListCard extends StatelessWidget {
-  // ignore: use_key_in_widget_constructors
-  const ListCard({required this.data, required this.shortText});
+  const ListCard({Key? key, required this.data, required this.shortText}) : super(key: key);
 
   final Data data;
   final String shortText;

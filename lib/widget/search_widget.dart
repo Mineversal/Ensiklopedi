@@ -17,7 +17,7 @@ class SearchWidget extends StatefulWidget {
 }
 
 class _SearchWidgetState extends State<SearchWidget> {
-  final controller = TextEditingController();
+  final _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -35,14 +35,14 @@ class _SearchWidgetState extends State<SearchWidget> {
       ),
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: TextField(
-        controller: controller,
+        controller: _controller,
         decoration: InputDecoration(
           icon: Icon(Icons.search, color: style.color),
           suffixIcon: widget.text.isNotEmpty
               ? GestureDetector(
                   child: Icon(Icons.close, color: style.color),
                   onTap: () {
-                    controller.clear();
+                    _controller.clear();
                     widget.onChanged('');
                     FocusScope.of(context).requestFocus(FocusNode());
                   },
@@ -56,5 +56,11 @@ class _SearchWidgetState extends State<SearchWidget> {
         onChanged: widget.onChanged,
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 }

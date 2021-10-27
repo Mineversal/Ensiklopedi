@@ -12,7 +12,7 @@ class Menu extends StatefulWidget {
 }
 
 class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
-  late TabController controller;
+  late TabController _controller;
 
   Future<dynamic> exitDialog() {
     return showDialog(
@@ -21,15 +21,13 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
         title: const Text('Are you sure?'),
         content: const Text('Do you want exit Ensiklopedi :('),
         actions: [
-          // ignore: deprecated_member_use
-          FlatButton(
+          TextButton(
             child: const Text("CANCEL"),
             onPressed: () {
               Navigator.of(context).pop(false);
             },
           ),
-          // ignore: deprecated_member_use
-          FlatButton(
+          TextButton(
             child: const Text("EXIT"),
             onPressed: () {
               SystemNavigator.pop();
@@ -42,7 +40,7 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
 
   @override
   void initState() {
-    controller = TabController(
+    _controller = TabController(
       length: 3,
       vsync: this,
       initialIndex: 1,
@@ -52,7 +50,7 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
 
   @override
   void dispose() {
-    controller.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
@@ -129,7 +127,7 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
           ),
         ),
         body: TabBarView(
-          controller: controller,
+          controller: _controller,
           children: const <Widget>[
             Trending(),
             Home(),
@@ -147,7 +145,7 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
               ),
             ),
             child: TabBar(
-              controller: controller,
+              controller: _controller,
               indicatorColor: Colors.white,
               tabs: const <Widget>[
                 Tab(

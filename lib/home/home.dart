@@ -65,8 +65,7 @@ class HomeList extends StatelessWidget {
                           ),
                         ),
                       ),
-                      // ignore: deprecated_member_use
-                      FlatButton(
+                      TextButton(
                           child: Container(
                             decoration: const BoxDecoration(
                               color: Colors.transparent,
@@ -247,8 +246,7 @@ class HomeGrid extends StatelessWidget {
                           ),
                         ),
                       ),
-                      // ignore: deprecated_member_use
-                      FlatButton(
+                      TextButton(
                           child: Container(
                             decoration: const BoxDecoration(
                               color: Colors.transparent,
